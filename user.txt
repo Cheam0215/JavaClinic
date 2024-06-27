@@ -1,0 +1,4 @@
+040215100575,Cheam Sheng Ting,123,Male,15 Feb 2004,Admin
+040215100576,Cheam,123,Male,5 Jun 2024,Doctor
+040215100585,Cheam Sheng Ting,123,Male,3 Jun 2024,Patient
+
