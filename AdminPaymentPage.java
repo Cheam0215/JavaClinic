@@ -4,7 +4,6 @@
  */
 package clinicmanagementsystem;
 
-import java.io.IOException;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
@@ -16,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Sheng Ting
  */
 public class AdminPaymentPage extends javax.swing.JFrame {
-    private String finalAmount;
+
     private DefaultTableModel model = new DefaultTableModel();
     private String columnName[] = {"Patient Name","IC Number","Date","Prescription","Payment Amount"};
     /**
@@ -27,13 +26,13 @@ public class AdminPaymentPage extends javax.swing.JFrame {
             
             Admin admin = new Admin();
             model.setColumnIdentifiers(columnName);
-            int sum = 0;
-            // Get all medical records
+           
+            
             List<String[]> records = admin.getAllPaymentRecord();
             for (String[] record : records) {
                 model.addRow(record);
-                sum += Integer.parseInt(record[4].replace("RM", ""));
-                finalAmount = String.valueOf(sum);
+                
+                
                 
                 
             }

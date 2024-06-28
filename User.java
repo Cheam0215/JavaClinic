@@ -96,11 +96,16 @@ public class User {
     
 
     public void register(JFrame currentFrame) {
-        if (icExists(this.ICNumber)) {
+        if(isValidIC(this.ICNumber)) {
+            if (icExists(this.ICNumber)) {
             JOptionPane.showMessageDialog(null, "IC Number already exists!");
         } else {
             saveUserToFile(currentFrame);
+        } 
+        }else{
+            JOptionPane.showMessageDialog(null, "Incorrect IC format");
         }
+        
     }
 
     public boolean icExists(String ICNumber) {
@@ -170,6 +175,48 @@ public class User {
         return records;
     }
 
+      public static boolean isValidIC(String ICNumber) {
+        // Check if the IC number is exactly 12 digits
+        if (ICNumber == null || ICNumber.length() != 12) {
+            return false;
+        }
+
+        // Check if all characters are digits
+        for (char c : ICNumber.toCharArray()) {
+            if (!Character.isDigit(c)) {
+                return false;
+            }
+        }
+
+        String birthDate = ICNumber.substring(0, 6);
+        
+        if (isValidDate(birthDate)) {
+        } else {
+            return false;
+        }
+
+        return true;
+    }
+      
+      private static boolean isValidDate(String date) {
+        if (date.length() != 6) {
+            return false;
+        }
+
+        int month = Integer.parseInt(date.substring(2, 4));
+        int day = Integer.parseInt(date.substring(4, 6));
+
+        if (month < 1 || month > 12) {
+            return false;
+        }
+        if (day < 1 || day > 31) {
+            return false;
+        }
+
+        return true;
+    }
+
+    
 
 
 }
