@@ -247,6 +247,29 @@ public class Admin extends User {
         return records;
     }
     
+    public List<String[]> searchPaymentDate(String searchDate){
+        List<String[]> records = new ArrayList<>();
+         try (FileReader fr = new FileReader("C:\\Users\\Sheng Ting\\Desktop\\medicalRecords.txt");
+             BufferedReader br = new BufferedReader(fr)) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] lines = line.split(",");
+                if (lines.length >= 8 && lines[7].equals("Paid") && lines[3].equals(searchDate)) {
+                    String[] record = new String[5];
+                    record[0] = lines[0]; // patientName
+                    record[1] = lines[1]; // ICNumber
+                    record[2] = lines[3]; // Date
+                    record[3] = lines[5]; // prescription
+                    record[4] = lines[8]; // paymentAmount
+                    records.add(record);
+                }
+            }
+        } catch (IOException e) {
+           
+        }
+        return records;
+    }
+    
     }
 
 
