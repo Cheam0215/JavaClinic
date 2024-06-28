@@ -219,10 +219,7 @@ public class AdminDailyAppointments extends javax.swing.JFrame {
         Date date = jDateChooser1.getDate();
         String name = jTextField1.getText();
 
-        if (name.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Enter a patient name.");
-            return;
-        }
+        
 
         String searchDate = date != null ? DateFormat.getDateInstance().format(date) : null;
         model.setRowCount(0); 
@@ -321,6 +318,10 @@ public class AdminDailyAppointments extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         if (status.equals("Checked In")){
             JOptionPane.showMessageDialog(this, "This patient has already checked in ! Cancellation denied !  ");
+        }else if(status.equals("Walk-in")){
+        JOptionPane.showMessageDialog(this, "You cannot cancel a walk-in appointment ! ");
+        
+
         }else if(status.equals("Cancelled")){
             JOptionPane.showMessageDialog(this, "This appointment is already cancelled ! ");
         }else{

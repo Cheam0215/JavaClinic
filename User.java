@@ -152,14 +152,14 @@ public class User {
     }
 
      
-      public List<String[]> searchMedicalRecords(String searchName) throws IOException {
+      public List<String[]> searchMedicalRecords(String searchName, String medDate) throws IOException {
         List<String[]> records = new ArrayList<>();
         try (FileReader fr = new FileReader("C:\\Users\\Sheng Ting\\Desktop\\medicalRecords.txt");
              BufferedReader br = new BufferedReader(fr)) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] lines = line.split(",");
-                if(searchName.equals(lines[0])){
+                if(searchName.equals(lines[0]) || medDate.equals(lines[3])){
                     records.add(lines);
                 }
                 

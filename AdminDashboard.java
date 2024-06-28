@@ -227,7 +227,7 @@ public class AdminDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel7MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        AdminMedicalRecord adminPage3 = new AdminMedicalRecord();
+        AdminPaymentPage adminPage3 = new AdminPaymentPage();
         adminPage3.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel5MouseClicked

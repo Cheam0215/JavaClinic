@@ -8,3 +8,4 @@ Cheam Sheng Ting,Mr.Strange,040215100575,25 Jun 2024,9:00AM,Leukemia,Booked
 Cheam Sheng Ting,Mr.Strange,040215100575,25 Jul 2024,9:00AM,Leptospirosis,Cancelled
 Cheam Sheng Ting,Mr.Strange,040215100575,25 Aug 2024,9:00AM,Cancer,Cancelled
 Cheam Sheng Ting,Cheam,040215100585,26 Jun 2024,9:00 A.M,I am Sick,Cancelled
+Cheam Sheng Ting,Cheam,040215100575,28 Jun 2024,9:00 A.M,I am sick,Cancelled

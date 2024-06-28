@@ -32,27 +32,52 @@ public class Admin extends User {
 
      public List<String[]> searchDate(String searchDate, String name) throws IOException {
         List<String[]> results = new ArrayList<>();
-        try (FileReader fr = new FileReader(APPOINTMENTS_FILE_PATH);
+        try (FileReader fr = new FileReader("C:\\Users\\Sheng Ting\\Desktop\\appointments.txt");
              BufferedReader br = new BufferedReader(fr)) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] fields = line.split(",");
-                if (searchDate != null && !searchDate.isEmpty()) {
-                    if (fields[3].equals(searchDate) && fields[0].equalsIgnoreCase(name)) { // Assuming date is at index 3 and name at index 0
-                        results.add(fields);
-                    }
-                } else {
-                    if (fields[0].equalsIgnoreCase(name)) {
-                        results.add(fields);
-                    }
+                boolean dateMatches = searchDate != null && !searchDate.isEmpty() && fields[3].equals(searchDate);
+                boolean nameMatches = name != null && !name.isEmpty() && fields[0].equalsIgnoreCase(name);
+
+                if (dateMatches && nameMatches) {
+                    results.add(fields);
+                } else if (dateMatches && (name == null || name.isEmpty())) {
+                    results.add(fields);
+                } else if (nameMatches && (searchDate == null || searchDate.isEmpty())) {
+                    results.add(fields);
                 }
             }
         } catch (IOException e) {
-            
             throw e;
         }
         return results;
     }
+     
+     public List<String[]> searchMedical(String searchDate, String name) throws IOException {
+        List<String[]> results = new ArrayList<>();
+        try (FileReader fr = new FileReader("C:\\Users\\Sheng Ting\\Desktop\\medicalRecords.txt");
+             BufferedReader br = new BufferedReader(fr)) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] fields = line.split(",");
+                boolean dateMatches = searchDate != null && !searchDate.isEmpty() && fields[3].equals(searchDate);
+                boolean nameMatches = name != null && !name.isEmpty() && fields[0].equalsIgnoreCase(name);
+
+                if (dateMatches && nameMatches) {
+                    results.add(fields);
+                } else if (dateMatches && (name == null || name.isEmpty())) {
+                    results.add(fields);
+                } else if (nameMatches && (searchDate == null || searchDate.isEmpty())) {
+                    results.add(fields);
+                }
+            }
+        } catch (IOException e) {
+            throw e;
+        }
+        return results;
+}
+
     
     public void checkIn(String name,String appDate){
         File file = new File(APPOINTMENTS_FILE_PATH);
@@ -198,7 +223,32 @@ public class Admin extends User {
         }
         return false; // No matching appointment found
     }
-}
+    
+    public List<String[]> getAllPaymentRecord() {
+        List<String[]> records = new ArrayList<>();
+        try (FileReader fr = new FileReader("C:\\Users\\Sheng Ting\\Desktop\\medicalRecords.txt");
+             BufferedReader br = new BufferedReader(fr)) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] lines = line.split(",");
+                if (lines.length >= 8 && lines[7].equals("Paid")) {
+                    String[] record = new String[5];
+                    record[0] = lines[0]; // patientName
+                    record[1] = lines[1]; // ICNumber
+                    record[2] = lines[3]; // Date
+                    record[3] = lines[5]; // prescription
+                    record[4] = lines[8]; // paymentAmount
+                    records.add(record);
+                }
+            }
+        } catch (IOException e) {
+           
+        }
+        return records;
+    }
+    
+    }
+
 
 
           
