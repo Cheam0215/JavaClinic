@@ -1,23 +1,20 @@
-package Assignment;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package clinicmanagementsystem;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import javax.swing.JOptionPane;
 
 public class Doctor extends User {
-    private static final String APPOINTMENTS_FILE_PATH = "C:\\Users\\User\\OneDrive - Asia Pacific University\\JAVA\\appointments.txt";
-    private static final String MEDICAL_FILE_PATH = "C:\\Users\\User\\OneDrive - Asia Pacific University\\JAVA\\medicalRecords.txt";
-    private static final String SCHEDULE_FILE_PATH = "C:\\Users\\User\\OneDrive - Asia Pacific University\\JAVA\\schedule.txt";
+    private static final String APPOINTMENTS_FILE_PATH = "C:\\Users\\Sheng Ting\\Desktop\\appointments.txt";
+    private static final String MEDICAL_FILE_PATH = "C:\\Users\\Sheng Ting\\Desktop\\medicalRecords.txt";
+    private static final String SCHEDULE_FILE_PATH = "C:\\Users\\Sheng Ting\\Desktop\\schedule.txt";
     private final String username;
 
     // Updated formatter to use "MMMM yyyy"
@@ -39,10 +36,11 @@ public class Doctor extends User {
             while ((line = br.readLine()) != null) {
                 String[] lines = line.split(",");
                 if (lines[1].equals(username) && lines[3].equals(new dateFormatter().formatCurrentDate()) &&
-                    (lines[6].equals("Booked") || lines[6].equals("Checked In"))) {
+                    (lines[lines.length-1].equals("Booked") || lines[lines.length-1].equals("Checked In"))) {
                     records.add(lines);
                 }
             }
+            
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -53,14 +51,15 @@ public class Doctor extends User {
         List<String[]> records = new ArrayList<>();
         try (FileReader fr = new FileReader(APPOINTMENTS_FILE_PATH);
             BufferedReader br = new BufferedReader(fr)) {
-        String line;
+            String line;
+            String targetDate = new dateFormatter().formatFutureDate(1);
         while ((line = br.readLine()) != null) {
             String[] lines = line.split(",");
-            if (lines[1].equals(username) && lines[3].equals(new dateFormatter().formatFutureDate(1)) &&
+            if (lines[1].equals(username) && lines[3].equals(targetDate) &&
                 (lines[6].equals("Booked") || lines[6].equals("Checked In"))) {
             records.add(lines);
         }
-    }
+    }   
     }
   return records;
 }
@@ -90,16 +89,18 @@ public class Doctor extends User {
     }
 
     public class dateFormatter {
-        public static String formatCurrentDate() {
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy");
+
+    public static String formatCurrentDate() {
         LocalDate currentDate = LocalDate.now();
         return currentDate.format(formatter);
     }
 
-        public static String formatFutureDate(int daysToAdd) {
-            LocalDate futureDate = LocalDate.now().plusDays(daysToAdd);
-            return futureDate.format(formatter);
-        }
+    public static String formatFutureDate(int daysToAdd) {
+        LocalDate futureDate = LocalDate.now().plusDays(daysToAdd);
+        return futureDate.format(formatter);
     }
+}
 
     public boolean cancelAppointments(String ICNumber, String appDate, String time) {
         List<String> lines = new ArrayList<>();
