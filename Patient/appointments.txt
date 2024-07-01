@@ -1,0 +1,17 @@
+Cheam Sheng Ting,Mr.Strange,040215100575,25 June 2024,9:00AM,Fever,Cancelled
+Cheam Sheng Tong,Mr.Strange,040215100575,26 June 2024,9:00AM,Flu,Checked In
+Cheam Chip Weng,Mr.Strange,040215100575,25 June 2024,9:00AM,Cough,Booked
+Cheam June Wei,Mr.Strange,040215100575,28 June 2024,9:00AM,COVID,Checked In
+Adrian Cheam,Mr.Strange,040215100575,25 June 2024,9:00AM,COVID 24,Checked In
+Cheam Sheng Ting Junior,Mr.Strange,040215100575,26 June 2024,9:00AM,Cancer,Booked
+Cheam Sheng Ting,Mr.Strange,040215100575,25 June 2024,9:00AM,Leukemia,Booked
+Cheam Sheng Ting,Mr.Strange,040215100575,25 July 2024,9:00AM,Leptospirosis,Cancelled
+Cheam Sheng Ting,Mr.Strange,040215100575,25 August 2024,9:00AM,Cancer,Cancelled
+Cheam Sheng Ting,Cheam,040215100585,26 Jun 2024,9:00 A.M,I am Sick,Cancelled
+Chai Ming Xuan,KFC,040102151509,15 July 2024,9:00 AM,GAY,Free
+Chai Ming Xuan,KFC,040102151509,15 July 2024,10:00 AM,GAY,Free
+Chai Ming Xuan,KFC,040102151509,15 July 2024,11:00 AM,GAY,Free
+Chai Ming Xuan,KFC,040102151509,25 August 2024,12:00 PM,GAY,Free
+Cheam Sheng Ting,Mr.Strange,040215100575,25 August 2024,10:00AM,Cancer,Free
+Cheam Sheng Ting,Mr.Strange,040215100575,25 August 2024,11:00AM,Cancer,Free
+Cheam Sheng Ting,Mr.Strange,040608101004,25 August 2024,2:00AM,Cancer,Free
