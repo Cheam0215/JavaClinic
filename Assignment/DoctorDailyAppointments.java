@@ -2,21 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Assignment;
+package clinicmanagementsystem;
 
 
-import java.io.IOException;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Edwin Chen
- */
+
 public class DoctorDailyAppointments extends javax.swing.JFrame {
     private Doctor.dateFormatter currentDate ;
     private DefaultTableModel model1 = new DefaultTableModel();
@@ -27,8 +21,10 @@ public class DoctorDailyAppointments extends javax.swing.JFrame {
 
     public DoctorDailyAppointments(String username) {
         try {
+            this.username = username;
             Doctor doctor = new Doctor(username);
             currentDate = doctor.new dateFormatter();
+                
             model1.setColumnIdentifiers(columnName);
             model2.setColumnIdentifiers(columnName);
 
@@ -146,7 +142,7 @@ public class DoctorDailyAppointments extends javax.swing.JFrame {
 
         jDateChooser1.setDateFormatString("d MMMM yyyy"); // Set date format for jDateChooser1
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assignment/search.png"))); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/search.png"))); // NOI18N
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -197,7 +193,7 @@ public class DoctorDailyAppointments extends javax.swing.JFrame {
                                             .addGap(18, 18, 18)
                                             .addComponent(jButton2))
                                         .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 916, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,6 +224,7 @@ public class DoctorDailyAppointments extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
