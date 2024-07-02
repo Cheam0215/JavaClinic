@@ -173,13 +173,15 @@ public class MyAppointment extends javax.swing.JFrame {
         String date = (String) model.getValueAt(selectedRow, 1);
         String time = (String) model.getValueAt(selectedRow, 2);
         String status = (String) model.getValueAt(selectedRow, 3);
+        Patient patient = new Patient();
 
         if (!status.equalsIgnoreCase("Booked")) {
             JOptionPane.showMessageDialog(this, "Please select a booked timeslot.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        patient.cancelAppointments(doctor, time, date);
 
-        if (updateAppointmentStatus(doctor, date, time, "Free")) {
+        if ((updateAppointmentStatus(doctor, date, time, "Cancelled")) ) {
             JOptionPane.showMessageDialog(this, "Appointment cancelled successfully!", "Cancellation Confirmation", JOptionPane.INFORMATION_MESSAGE);
             populateTableFromFile("appointments.txt");
         } else {
@@ -247,7 +249,7 @@ public class MyAppointment extends javax.swing.JFrame {
         for (String[] row : data) {
             String ic = row[2];
             String status = row[6];
-            if (ic.equals(currentIC) && status.equals("Booked")) {
+            if (ic.equals(currentIC) && (status.equals("Booked")) || (status.equals("Cancelled"))) {
                 
                 String[] selectedData = { row[1], row[3], row[4], row[6] };
                 model.addRow(selectedData);

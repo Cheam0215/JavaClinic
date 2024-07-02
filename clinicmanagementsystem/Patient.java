@@ -144,5 +144,45 @@ public class Patient extends User{
            
         }
     }
+ 
+ public void cancelAppointments(String doctorName, String time, String date) {
+    try {
+        // Read all lines from the schedule file
+        List<String> lines = Files.readAllLines(Paths.get("schedule.txt"));
+        boolean updated = false;
 
+        for (int i = 0; i < lines.size(); i++) {
+            String line = lines.get(i);
+            String[] parts = line.split(",");
+            if (parts[0].equals(doctorName) && parts[parts.length - 1].equals(date)) {
+                // Find the matching timeslot and update its status to "C"
+                String[] timeslots = parts[1].split(";");
+                for (int j = 0; j < timeslots.length; j++) {
+                    String[] timeAndStatus = timeslots[j].split(":");
+                    if (timeAndStatus[0].equals(time) && timeAndStatus[1].equals("B")) {
+                        timeslots[j] = time + ":F"; // Update status to Cancelled
+                        updated = true;
+                        break;
+                    }
+                }
+                // Reconstruct the line with updated timeslots
+                parts[1] = String.join(";", timeslots);
+                lines.set(i, String.join(",", parts));
+                break;
+            }
+        }
+
+        if (updated) {
+            // Write all lines back to the schedule file
+            Files.write(Paths.get("schedule.txt"), lines);
+            
+        } else {
+            System.out.println("No matching appointment found or appointment is not available for cancellation.");
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
+         
 }
