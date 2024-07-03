@@ -10,8 +10,7 @@ import javax.swing.JOptionPane;
  *
  * @author Sheng Ting
  */
-public class Login extends javax.swing.JFrame {
-    private String ICNumber;
+public class Login extends javax.swing.JFrame {private String name;
 
     /**
      * Creates new form Login
@@ -40,7 +39,7 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/clinic logo.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/clinicmanagementsystem/clinic logo.png"))); // NOI18N
         jLabel2.setText("jLabel2");
 
         jLabel1.setFont(new java.awt.Font("MS PGothic", 0, 24)); // NOI18N
@@ -120,7 +119,7 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -136,20 +135,20 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Register reg = new Register();
-        reg.setVisible(true);
-        this.dispose();
+        //Register reg = new Register();
+        //reg.setVisible(true);
+        //this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ICNumber = jTextField1.getText();
+        String ICNumber = jTextField1.getText();
         String password = String.valueOf(jPasswordField1.getPassword());
         authenticate(ICNumber,password);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     
     private void authenticate(String ICNumber, String password) {
-        try (FileReader fr = new FileReader("user.txt");
+        try (FileReader fr = new FileReader("C:\\Users\\User\\OneDrive - Asia Pacific University\\JAVA\\user.txt");
              BufferedReader br = new BufferedReader(fr)) {
             String line;
             boolean userExists = false;
@@ -160,19 +159,15 @@ public class Login extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Login Successful");
                     userExists = true;
                     String role = lines[5];
-                    Session.setCurrentIC(this.ICNumber);
+                    String username = lines[1];
                     switch (role) {
                         case "Patient":
-                            PatientMain patientPage = new PatientMain(this.ICNumber);
-                            patientPage.setVisible(true);
-                            this.dispose();
                             
                             break;
                         case "Doctor":
-//                            User user = new User();
-//                            DoctorHome doctordash = new DoctorHome(user.getNamebyICNumber(this.ICNumber));
-//                            doctordash.setVisible(true);
-//                            break;
+                            DoctorHome doctorPage = new DoctorHome(username);
+                            doctorPage.setVisible(true);
+                            break;
                         case "Admin":
                             AdminDashboard adminPage = new AdminDashboard();
                             adminPage.setVisible(true);

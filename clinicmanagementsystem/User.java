@@ -7,7 +7,7 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
- 
+
 public class User {
     private String ICNumber;
     private String username;
@@ -16,7 +16,7 @@ public class User {
     private String birthDate;
     private String role;
 
-    private static final String USER_FILE_PATH = "user.txt";
+    private static final String USER_FILE_PATH = "C:\\Users\\User\\OneDrive - Asia Pacific University\\JAVA\\user.txt";
 
     
     public User(){
@@ -143,7 +143,7 @@ public class User {
      
      public List<String[]> getAllMedicalRecords() {
         List<String[]> records = new ArrayList<>();
-        try (FileReader fr = new FileReader("medicalRecords.txt");
+        try (FileReader fr = new FileReader("C:\\Users\\User\\OneDrive - Asia Pacific University\\JAVA\\medicalRecords.txt");
              BufferedReader br = new BufferedReader(fr)) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -159,7 +159,7 @@ public class User {
      
       public List<String[]> searchMedicalRecords(String searchName, String medDate) throws IOException {
         List<String[]> records = new ArrayList<>();
-        try (FileReader fr = new FileReader("medicalRecords.txt");
+        try (FileReader fr = new FileReader("C:\\Users\\User\\OneDrive - Asia Pacific University\\JAVA\\medicalRecords.txt");
              BufferedReader br = new BufferedReader(fr)) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -216,22 +216,6 @@ public class User {
         return true;
     }
 
-    public String getNamebyICNumber(String ICNumber){
-    try (FileReader fr = new FileReader("user.txt");
-         BufferedReader br = new BufferedReader(fr)) {
-        String line;
-        while ((line = br.readLine()) != null) {
-            String[] fields = line.split(",");
-            if(ICNumber.equals(fields[0]))
-                return fields[1];
-
-        }
-    }catch (IOException e){
-
-    }
-    return null;
-}
-    
     
 
 
